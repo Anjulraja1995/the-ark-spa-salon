@@ -1,0 +1,1 @@
+The master design image is maintained separately to preserve the approved visual exactly.
