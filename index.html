@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>The Ark Spa & Salon | Vijay Nagar, Indore</title>
 <meta name="description" content="The Ark Spa & Salon — Reducing Stress • Increasing Relaxation. Vijay Nagar, Indore.">
-<link rel="stylesheet" href="style.css?v=16">
+<link rel="stylesheet" href="style.css?v=17">
 </head>
 <body>
 <main class="design-shell" id="home">
-  <img class="master-design" src="assets/master-design.jpg?v=16" alt="The Ark Spa & Salon" decoding="async" fetchpriority="high">
+  <img class="master-design" src="https://raw.githubusercontent.com/Anjulraja1995/the-ark-spa-salon/main/assets/master-design.jpg?v=17" alt="The Ark Spa & Salon" decoding="sync" fetchpriority="high">
   <nav class="hotspots" aria-label="Website navigation">
     <a class="hotspot home" href="#home" aria-label="Home"></a>
     <a class="hotspot about" href="#about" aria-label="About Us"></a>
@@ -29,7 +29,6 @@
     <span class="hotspot contact-target" id="contact" aria-hidden="true"></span>
   </nav>
 </main>
-
 <dialog id="booking">
   <form method="dialog" class="booking-card">
     <button class="close" value="cancel" aria-label="Close">×</button>
@@ -38,35 +37,15 @@
     <p>Daily 11:00 AM – 9:00 PM</p>
     <input id="bname" required placeholder="Your name">
     <input id="bphone" required inputmode="tel" placeholder="Mobile number">
-    <select id="bservice">
-      <option>Massage Therapy</option>
-      <option>Foot Therapy</option>
-      <option>Scrubbed Therapy</option>
-      <option>Asian Therapy</option>
-    </select>
-    <input id="bdate" type="date">
-    <input id="btime" type="time">
+    <select id="bservice"><option>Massage Therapy</option><option>Foot Therapy</option><option>Scrubbed Therapy</option><option>Asian Therapy</option></select>
+    <input id="bdate" type="date"><input id="btime" type="time">
     <button class="send" type="button" id="sendBooking">Send on WhatsApp</button>
   </form>
 </dialog>
-
 <script>
-const dialog = document.getElementById('booking');
-document.querySelectorAll('[data-book]').forEach(button => button.addEventListener('click', () => dialog.showModal()));
-document.getElementById('sendBooking').addEventListener('click', () => {
-  const name = document.getElementById('bname').value.trim();
-  const phone = document.getElementById('bphone').value.trim();
-  const service = document.getElementById('bservice').value;
-  const date = document.getElementById('bdate').value || 'Not specified';
-  const time = document.getElementById('btime').value || 'Not specified';
-  if (!name || !phone) {
-    alert('Please enter your name and mobile number.');
-    return;
-  }
-  const message = `Hello The Ark Spa & Salon, I would like to book an appointment.\nName: ${name}\nMobile: ${phone}\nService: ${service}\nDate: ${date}\nTime: ${time}`;
-  window.open('https://wa.me/919584885121?text=' + encodeURIComponent(message), '_blank', 'noopener');
-  dialog.close();
-});
+const dialog=document.getElementById('booking');
+document.querySelectorAll('[data-book]').forEach(b=>b.addEventListener('click',()=>dialog.showModal()));
+document.getElementById('sendBooking').addEventListener('click',()=>{const name=document.getElementById('bname').value.trim(),phone=document.getElementById('bphone').value.trim(),service=document.getElementById('bservice').value,date=document.getElementById('bdate').value||'Not specified',time=document.getElementById('btime').value||'Not specified';if(!name||!phone){alert('Please enter your name and mobile number.');return}const message=`Hello The Ark Spa & Salon, I would like to book an appointment.\nName: ${name}\nMobile: ${phone}\nService: ${service}\nDate: ${date}\nTime: ${time}`;window.open('https://wa.me/919584885121?text='+encodeURIComponent(message),'_blank','noopener');dialog.close()});
 </script>
 </body>
 </html>
