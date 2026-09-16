@@ -24,14 +24,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Rebuild master design image
+        shell: bash
+        run: |
+          base64 -d assets/master-design-256q.b64 > assets/master-design.jpg
+
       - name: Verify master design asset
         shell: bash
         run: |
-          test -s assets/master-design.svg
-          file assets/master-design.svg
-          ls -lh assets/master-design.svg
+          test -s assets/master-design.jpg
+          file assets/master-design.jpg
+          ls -lh assets/master-design.jpg
           test -s index.html
-          grep -q 'master-design.svg' index.html
+          grep -q 'assets/master-design.jpg' index.html
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
