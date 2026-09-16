@@ -27,10 +27,11 @@ jobs:
       - name: Verify master design asset
         shell: bash
         run: |
-          test -s assets/master-design.svg
-          grep -q '<svg' assets/master-design.svg
+          test -s assets/master-design.jpg
+          file assets/master-design.jpg
+          ls -lh assets/master-design.jpg
           test -s index.html
-          grep -q 'assets/master-design.svg' index.html
+          grep -q 'assets/master-design.jpg' index.html
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
