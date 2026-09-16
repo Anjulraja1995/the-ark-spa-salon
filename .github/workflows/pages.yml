@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -24,31 +24,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create real JPG asset from approved master design
-        shell: python
+      - name: Verify master design asset
+        shell: bash
         run: |
-          import base64, re
-          from pathlib import Path
-          svg = Path('assets/master-design.svg').read_text(encoding='utf-8')
-          match = re.search(r'data:image/jpeg;base64,([^\"]+)', svg)
-          if not match:
-              raise SystemExit('Embedded master JPEG not found')
-          data = base64.b64decode(match.group(1))
-          out = Path('assets/master-design.jpg')
-          out.write_bytes(data)
-          print(f'Created {out} ({len(data)} bytes)')
-
-      - name: Commit JPG into main so branch-based GitHub Pages can serve it
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/master-design.jpg
-          if git diff --cached --quiet; then
-            echo "master-design.jpg is already committed"
-          else
-            git commit -m "Add master design JPG for GitHub Pages [skip ci]"
-            git push origin HEAD:main
-          fi
+          test -s assets/master-design.jpg
+          file assets/master-design.jpg
+          ls -lh assets/master-design.jpg
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
