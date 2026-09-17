@@ -27,10 +27,9 @@ jobs:
       - name: Verify master design asset
         shell: bash
         run: |
-          test -s assets/master-design.jpg
-          file assets/master-design.jpg | grep -qi 'jpeg image data'
           test -s index.html
-          grep -q 'assets/master-design.jpg' index.html
+          grep -q 'data:image/webp;base64' index.html
+          grep -q 'The Ark Spa & Salon' index.html
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
